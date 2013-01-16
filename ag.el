@@ -70,6 +70,8 @@
 
 (defun ag/search (string directory)
   "Run ag searching for the literal STRING given in DIRECTORY."
+  (unless (string-match "/$" directory)
+    (setq directory (concat directory "/")))
   (let ((default-directory directory))
     (compilation-start
      (ag/s-join " "
